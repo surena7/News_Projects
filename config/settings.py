@@ -38,8 +38,8 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     #...
-    # "admin_interface",
-    # "colorfield",
+    "admin_interface",
+    "colorfield",
     #...
     'django.contrib.admin',
     #...
@@ -49,13 +49,13 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     "news",
-    # "ckeditor",
-    # "tagging",
-    # "accounts",
-    # "crispy_forms",
-    # "crispy_bootstrap5",
-    # "comment",
-    # "star_ratings",
+    "ckeditor",
+    "tagging",
+    "accounts",
+    "crispy_forms",
+    "crispy_bootstrap5",
+    "comment",
+    "star_ratings",
     
 ]
 
@@ -142,8 +142,8 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# X_FRAME_OPTIONS = "SAMEORIGIN"
-# SILENCED_SYSTEM_CHECKS = ["security.W019"]
+X_FRAME_OPTIONS = "SAMEORIGIN"
+SILENCED_SYSTEM_CHECKS = ["security.W019"]
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS=[
@@ -152,25 +152,25 @@ STATICFILES_DIRS=[
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
 
-# CKEDITOR_UPLOAD_PATH = "uploads/"
-# CKEDITOR_IMAGE_BACKEND = "pillow"
-# CKEDITOR_JQUERY_URL = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.m"
+CKEDITOR_UPLOAD_PATH = "uploads/"
+CKEDITOR_IMAGE_BACKEND = "pillow"
+CKEDITOR_JQUERY_URL = "//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.m"
 
-# CKEDITOR_CONFIGS = {
-#     'default':
-#         {
-#         'toolbar':'advanced',
+CKEDITOR_CONFIGS = {
+    'default':
+        {
+        'toolbar':'advanced',
             
-#              },
+             },
         
-# }
+}
 
-# LOGIN_REDIRECT_URL = "accounts:userpanel"
+LOGIN_REDIRECT_URL = "accounts:userpanel"
 
-# LOGOUT_REDIRECT_URL = "accounts:login"
+LOGOUT_REDIRECT_URL = "accounts:login"
 
-# CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
+CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
-# CRISPY_TEMPLATE_PACK = "bootstrap5"
+CRISPY_TEMPLATE_PACK = "bootstrap5"
 
-# LOGIN_URL = "accounts:login"
+LOGIN_URL = "accounts:login"

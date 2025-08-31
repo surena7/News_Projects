@@ -6,11 +6,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('admin/', admin.site.urls),
     path("",include("news.urls",namespace="news")),
-    # path('ckeditor/',include("ckeditor_uploader.urls")),
-    # # path('accounts/',include('django.contrib.auth.urls')),
-    # path('UserPanel/',include('accounts.urls')),
-    # path("comment/",include("comment.urls")),
-    # path('ratings/', include('star_ratings.urls', namespace='ratings')),
+    path('ckeditor/',include("ckeditor_uploader.urls")),
+    # path('accounts/',include('django.contrib.auth.urls')),
+    path('UserPanel/',include('accounts.urls')),
+    path("comment/",include("comment.urls")),
+    path('ratings/', include('star_ratings.urls', namespace='ratings')),
 ]
 
 
