@@ -1,0 +1,23 @@
+{% extends "base.html" %}
+{% block title %}{{category}}{% endblock title %}
+
+
+{% block context %}
+
+<div class="col-lg-4">
+
+    {% for cate in categorys %}
+    <div style="text-align:center">
+    <div class="position-relative overflow-hidden mb-3" style="height: 80px;">
+        <a href="{% url "news:post_category" cate.id %}" class="overlay align-items-center justify-content-center h2 m-0 text-black bg-white text-decoration-none">
+            {{cate.name}}
+        </a>
+    </div>
+</div>
+{% endfor %}
+
+
+</div>
+{% endblock context %}
+
+

@@ -1,0 +1,259 @@
+{% extends "base.html" %}
+{% block title %}Surena News{% endblock title %}
+
+
+{% block context %}
+
+ <!-- Top News Slider Start -->
+ <div class="container-fluid py-3">
+    <div class="container">
+        <div class="owl-carousel owl-carousel-2 carousel-item-3 position-relative">
+            {% for post in the_older_posts %}
+            <div class="d-flex mb-3" style="max-width:390px;margin:2px">
+                <img src="{{post.banner.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                    <a class="h5 fw-bold" href="{% url "news:detail" post.id post.about.name %}">{{post.title}}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+<!-- Top News Slider End -->
+
+
+<!-- Main News Slider Start -->
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+                <div class="owl-carousel owl-carousel-2 carousel-item-1 position-relative mb-3 mb-lg-0">
+                    {% for post in the_new_top_posts %}
+                    <div class="position-relative overflow-hidden" style="height: 435px;">
+                        <img class="img-fluid h-100" src="{{post.banner.url}}" style="object-fit: cover;">
+                        <div class="overlay">
+                            <div class="mb-1">
+                                <a class="text-white" href="">{{post.about.name}}</a>
+                                <span class="px-2 text-white">/</span>
+                                <a class="text-white" href="">{{post.created}}</a>
+                            </div>
+                            <a class="h2 m-0 text-white font-weight-bold" href="{% url "news:detail" post.id post.about.name %}">{{post.title}}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% block category %}
+            {% include "news/partiations/news_category.html" %}
+            {% endblock category %}
+        </div>
+    </div>
+</div>
+<!-- Main News Slider End -->
+
+
+<!-- Featured News Slider Start -->
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="d-flex align-items-center justify-content-between bg-dark py-2 px-4 mb-3">
+            <h3 class="m-0" style="color:white">اخبار برجسته</h3>
+            <a class=" font-weight-medium text-decoration-none" href="{% url "news:post_tag" %}" style="color:white">دیدن همه</a>
+        </div>
+        <div class="owl-carousel owl-carousel-2 carousel-item-4 position-relative">
+            {% for post in post_tag %}
+            <div class="position-relative overflow-hidden" style="height: 300px;">
+                <img class="img-fluid w-100 h-100" src="{{post.banner.url}}" style="object-fit: cover;">
+                <div class="overlay">
+                    <div class="mb-1" style="font-size: 13px;">
+                        <a class="text-white" href="">{{post.about.name}}</a>
+                        <span class="px-1 text-white">/</span>
+                        <a class="text-white" href="">{{post.created}}</a>
+                    </div>
+                    <a class="h4 m-0 text-white" href="{% url "news:detail" post.id post.about.name %}">{{post.title}}</a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+</div>
+<!-- Featured News Slider End -->
+                                                                                                 
+                                                                                                  
+<!-- Category News Slider Start -->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 py-3">
+                <div class="bg-dark py-2 px-4 mb-3">
+                    <h3 class="m-0" style="color:white">اقتصاد و بازار</h3>
+                </div>
+                <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                    {% for new in news %}
+                    {% if new.about.name == "اقتصاد" %}
+                    <div class="position-relative">
+                        <img height="200px" width="250px" src="{{new.banner.url}}">
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-2" style="font-size: 13px;">
+                                <a href="">{{new.about}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{new.time_update}}</span>
+                            </div>
+                            <a class="h4 m-0" href="{% url 'news:detail' new.id new.about.name %}">{{new.title}}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6 py-3">
+                <div class="bg-dark py-2 px-4 mb-3">
+                    <h3 class="m-0" style="color:white">تکنولوژی</h3>
+                </div>
+                <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                    {% for new in news %}
+                    {% if new.about.name == "تکنولوژی" %}
+                    <div class="position-relative">
+                        <img height="200px" width="250px" src="{{new.banner.url}}">
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-2" style="font-size: 13px;">
+                                <a href="">{{new.about}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{new.time_update}}</span>
+                            </div>
+                            <a class="h4 m-0" href="{% url "news:detail" new.id new.about.name %}">{{new.title}}</a>
+                        </div>
+                    </div>
+                    {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Category News Slider End -->
+
+
+<!-- Category News Slider Start -->
+<div class="container-fluid">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 py-3">
+                <div class="bg-dark py-2 px-4 mb-3">
+                    <h3 class="m-0" style="color:white">هنری</h3>
+                </div>
+                <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                    {% for new in news %}
+                    {% if new.about.name == "هنری" %}
+                    <div class="position-relative">
+                        <img height="200px" width="250px" src="{{new.banner.url}}">
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-2" style="font-size: 13px;">
+                                <a href="">{{new.about}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{new.time_update}}</span>
+                            </div>
+                            <a class="h4 m-0" href="{% url "news:detail" new.id new.about.name %}">{{new.title}}</a>
+                        </div>
+                    </div>
+                   {% endif %}
+                   {% endfor %}
+                </div>
+            </div>
+            <div class="col-lg-6 py-3">
+                <div class="bg-dark py-2 px-4 mb-3">
+                    <h3 class="m-0" style="color:white">ورزشی</h3>
+                </div>
+                <div class="owl-carousel owl-carousel-3 carousel-item-2 position-relative">
+                    {% for new in news %}
+                    {% if new.about.name == "ورزشی" %}
+                    <div class="position-relative">
+                        <img height="200px" width="250px" src="{{new.banner.url}}" >
+                        <div class="overlay position-relative bg-light">
+                            <div class="mb-2" style="font-size: 13px;">
+                                <a href="">{{new.about}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{new.time_update}}</span>
+                            </div>
+                            <a class="h4 m-0" href="{% url "news:detail" new.id new.about.name %}">{{new.title}}</a>
+                        </div>
+                    </div>
+                {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- Category News Slider End -->
+
+
+<!-- News With Sidebar Start -->
+<div class="container-fluid py-3">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-8">
+               
+                {% block popularpost %}
+                
+                {% include "news/popularpost.html" %}
+
+                {% endblock popularpost %}
+                
+                <div class="mb-3 pb-3">
+                    <a href=""><img class="img-fluid w-100" src="img/ads-700x70.jpg" alt=""></a>
+                </div>
+                
+                {% block lastpost %}
+                
+                {% include "news/lastpost.html" %}
+                
+                {% endblock lastpost %}
+
+            <div class="col-lg-4 pt-3 pt-lg-0">
+
+                <!-- Ads Start -->
+                <div class="mb-3 pb-3">
+                    <a href=""><img class="img-fluid" src="img/news-500x280-4.jpg" alt=""></a>
+                </div>
+                <!-- Ads End -->
+
+                <!-- Popular News Start -->
+                <div class="pb-3">
+                    <div class="bg-dark py-2 px-4 mb-3">
+                        <h3 class="m-0" style="color:white">آخرین خبرها</h3>
+                    </div>
+                    {% for post in top_last_posts %}
+                    <div class="d-flex mb-3">
+                        <img src="{{post.banner.url}}" style="width: 100px; height: 100px; object-fit: cover;">
+                        <div class="w-100 d-flex flex-column justify-content-center bg-light px-3" style="height: 100px;">
+                            <div class="mb-1" style="font-size: 13px;">
+                                <a href="">{{post.about.name}}</a>
+                                <span class="px-1">/</span>
+                                <span>{{post.created}}</span>
+                            </div>
+                            <a class="h6 m-0" href="{% url "news:detail" post.id post.about.name %}">{{post.title}}</a>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                <!-- Popular News End -->
+                 {% block tags %}  
+
+                  {% include "news/partiations/tags.html" %}
+
+                 {% endblock tags %}
+                <!-- Tags Start -->
+                
+                <!-- Tags End -->
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+<!-- News With Sidebar End -->
+
+
+{% endblock context %}

@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block title %}{{category}}{% endblock title %}
+
+
+{% block context %}
+<h1 style="color:red;text-align:center;font-size:103px">اخبار براساس محبوبیت</h1>
+<br>
+{% for post in post_populers %}
+<div class="container">
+                  <div class="row"> 
+                    <div class="col-lg-12">
+                        <div class="position-relative mb-4">
+                            <img width="1110px" height="650px" src="{{post.banner.url}}">
+                            <div class="overlay position-relative bg-light">
+                                <div class="mb-2" style="font-size: 14px;">
+                                    <a href="">{{post.about}}</a>
+                                    <span class="px-1">/</span>
+                                    <span>{{post.created}}</span>
+                                    <span class="px-1">/</span>
+                                    <span class="fas fa-eye"> {{post.views}}</span>
+                                </div>
+                                <a class="h4" href="{% url "news:detail" post.id post.about.name %}">{{post.title}}</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+<br><br><br><br>
+{% endfor %}
+{% endblock context %}

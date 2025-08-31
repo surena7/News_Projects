@@ -1,0 +1,38 @@
+{% block footer %}
+
+
+<div class="container-fluid bg-light pt-5 px-sm-3 px-md-5">
+    <div class="row">
+        <div class="col-lg-3 col-md-6 mb-5">
+            <a href="index.html" class="navbar-brand">
+                <h1 class="mb-2 mt-n2 display-5 text-uppercase"><span class="text-primary">Surena</span>News</h1>
+            </a>
+            <p>طراحی ودیزاین توسط سورنا کمری</p>
+
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5 ">
+            <h4 class="font-weight-bold mb-4 bg-dark" style="padding:10px;color:white">دسته بندی ها</h4>
+            <div class="d-flex flex-wrap m-n1">
+            {% for cate in all_categorys %}
+                <a href="{% url "news:post_category" cate.id %}" class="btn btn-sm btn-outline-secondary m-1">{{cate.name}}</a>
+            {% endfor %}
+            </div>
+        </div>
+        <div class="col-lg-3 col-md-6 mb-5">
+            <div class="d-flex flex-wrap m-n1">
+            {% include "news/partiations/tags.html" %}
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container-fluid py-4 px-sm-3 px-md-5 bg-dark">
+    <p class="m-0 text-center" style="color:white">
+        &copy; <a class="font-weight-bold" href="{% url "news:home" %}">Surena News</a>. All Rights Reserved. 
+        
+        <!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+        Made by<a class="font-weight-bold" href="https://github.com/surena7" style="color:#dddf00"> Surena Kamari</a>
+    </p>
+</div>
+
+
+{% endblock footer %}
