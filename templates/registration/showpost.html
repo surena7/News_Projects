@@ -1,0 +1,95 @@
+{% extends "registration/base2.html" %}
+
+{% block title %}The Posts{% endblock title %}
+
+
+
+
+{% block content %}
+
+
+
+<h1 style="text-align:right">آمار خبر ها</h2>
+    <br>
+<div class="card" style="border-radius:21px">
+    <div class="card-body" >
+      <div class="table-responsive">
+        <table class="table" style="text-align:center">
+          <thead>
+            <tr>
+              <th>عنوان خبر</th>
+              <th>دسته بندی خبر</th>
+              <th>نویسنده ی خبر</th>
+              <th>آخرین بروزرسانی خبر</th>
+              <th>تعداد بازدید های خبر</th>
+              <th>عکس خبر</th>
+              <th>وضعیت خبر</th>
+              
+            </tr>
+          </thead>
+          <tbody>
+
+          {% for new in object_list %}
+            <tr>
+              <td style="font-size:18px"><a style="text-decoration:none;color:black" href="{% url "accounts:Update" new.pk %}">{{new.title}}</a>
+              <hr>
+          <div>
+            </div>
+              <span><a class="btn btn-success btn-sm" href="{% url "accounts:Update" new.pk %}">ویرایش خبر</a></span>
+              <span><a class="btn btn-danger btn-sm" href="{% url "accounts:Delete" new.pk %}">حذف خبر</a></span>
+              {% if new.status == "2" %}
+              <span><a class="btn btn-primary btn-sm" href="{% url "news:detail" new.id new.about %}">پیش نمایش خبر</a></span>
+              
+              {% endif %}
+            </div>
+          </div>
+        </td>
+              <td style="font-size:19px">{{new.about}}</td>
+              <td>{{new.user}}</td>
+              <td>{{new.time_update}}</td>
+              <td>{{new.views}}</td>
+              <td><img id="1" src="{{new.banner.url}}"></td>
+            {% if new.status == "1" %}
+              <td><button type="button" class="btn btn-success btn-rounded btn-fw">تأیید شده</button>
+              <a href="{% url "news:detail" new.id new.about %}" class="btn btn-primary btn-rounded btn-fw" target="_blank">دیدن جزییات خبر</a>
+              <br>
+              {% comment %} <a href="{% url "accounts:Update" new.pk  %}" class="btn btn-warning btn-rounded btn-fw" target="_blank">ویرایش خبر</a></td></td> {% endcomment %}
+            {% else %}
+            <td><button type="button" class="btn btn-danger btn-rounded btn-fw">در انتظار تأیید</button></td>
+            {% endif %}
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+    <div class="container">
+    <div class="pagination">
+        <span class="step-links">
+            {% if page_obj.has_previous %}
+                <a  class="btn btn-primary" href="?page=1">&laquo; صفحه ی اول</a>
+                <a  class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">صفحه ی قبلی</a>
+            {% endif %}
+    
+            <span class="current">
+                صفحه ی {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+            </span>
+    
+            {% if page_obj.has_next %}
+                <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">صفحه ی بعدی</a>
+                <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">صفحه ی آخر &raquo;</a>
+            {% endif %}
+        </span>
+        <br><br>
+    </div>
+  </div>
+</div>
+
+
+
+
+
+
+
+{% endblock content %}

@@ -1,0 +1,103 @@
+{% extends "registration/base2.html" %}
+
+{% block title %}Dahbord{% endblock title %}
+
+
+
+
+{% block content %}
+
+
+<h1 style="text-align:center">خبر های سایت</h2>
+<br><br>
+
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between bg-dark py-2 px-4 mb-3">
+        <h3 class="m-0" style="color:white">اخبار پر طرفدار </h3>
+        <a class=" font-weight-medium text-decoration-none" href="{% url "news:populer" %}" style="color:white">دیدن همه</a>
+    </div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for new in PopularPosts %}
+<div class="col" style="text-align:right">
+    <div class="card h-100">
+      <img height="251px" src="{{new.banner.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <a style="text-decoration:none;color:black" href="{% url "news:detail" new.id new.about.name %}"><h5 class="card-title" style="font-size:22px">{{new.title}}</h5></a>
+        <hr>
+        <p class="card-text">{{new.about}} / <b class="fas fa-eye">{{new.views}}</b> / {{new.user}}</p>
+        <h5 class="card-title">{{new.created}}</h5>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+</div>
+<br><br>
+<hr>
+<br><br>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-between bg-dark py-2 px-4 mb-3">
+        <h3 class="m-0" style="color:white">آخرین اخبار</h3>
+        <a class=" font-weight-medium text-decoration-none" href="{% url "news:post_tag" %}" style="color:white">دیدن همه</a>
+    </div>
+<div class="row row-cols-1 row-cols-md-3 g-4">
+{% for new in LastPosts %}
+<div class="col" style="text-align:right">
+    <div class="card h-100">
+      <img height="251px" src="{{new.banner.url}}" class="card-img-top" alt="...">
+      <div class="card-body">
+        <a style="text-decoration:none;color:black" href="{% url "news:detail" new.id new.about.name %}"><h5 class="card-title" style="font-size:22px">{{new.title}}</h5></a>
+        <hr>
+        <p class="card-text">{{new.about}} / <b class="fas fa-eye">{{new.views}}</b> / {{new.user}}</p>
+        <h5 class="card-title">{{new.created}}</h5>
+      </div>
+    </div>
+  </div>
+{% endfor %}
+</div>
+{% if user.is_superuser %}
+<br><br>
+<h1 style="text-align:center">آخرین نظرات</h1>
+<br><hr><br>
+{% for comment in comments %}
+<div class="card" style="width:1101px;text-align:right">
+  <div class="card-body">
+    <div class="col">
+<h5>{{comment.posted}} | {{comment.user}}</h5>
+<hr>
+        <h6>{{comment.content}}</h6>
+        <p></p>
+
+
+
+    </div>
+  </div>
+</div>
+<br>
+
+{% endfor %}
+<div class="container">
+  <div class="pagination">
+      <span class="step-links">
+          {% if page_obj.has_previous %}
+              <a  class="btn btn-primary" href="?page=1">&laquo; صفحه ی اول</a>
+              <a  class="btn btn-primary" href="?page={{ page_obj.previous_page_number }}">صفحه ی قبلی</a>
+          {% endif %}
+  
+          <span class="current">
+              صفحه ی {{ page_obj.number }} از {{ page_obj.paginator.num_pages }}.
+          </span>
+  
+          {% if page_obj.has_next %}
+              <a class="btn btn-primary" href="?page={{ page_obj.next_page_number }}">صفحه ی بعدی</a>
+              <a class="btn btn-primary" href="?page={{ page_obj.paginator.num_pages }}">صفحه ی آخر &raquo;</a>
+          {% endif %}
+      </span>
+      <br><br>
+  </div>
+</div>
+</div>
+{% endif %}
+
+
+{% endblock content %}

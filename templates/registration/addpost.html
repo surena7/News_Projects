@@ -1,0 +1,49 @@
+{% extends "registration/base2.html" %}
+{% load crispy_forms_tags %}
+{% block title %}Add Post{% endblock title %}
+
+{% block style0 %}
+
+.form-group label{
+    font-size:21px,
+    color:blue
+}
+.form-control{
+
+}
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+<h1 style="text-align:right">افزودن خبر</h2>
+    
+
+<div class="card" style="border-radius:21px">
+    <div class="card-body" >
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+{{form.media}}
+{{form.title|as_crispy_field}}
+{{form.text_descriptions|as_crispy_field}}
+{{form.banner|as_crispy_field}}
+{{form.tags|as_crispy_field}}
+{{form.about|as_crispy_field}}
+{{form.city|as_crispy_field}}
+{% if user.is_superuser %}
+{{form.status|as_crispy_field}}
+{{form.user|as_crispy_field}}
+{% endif %}
+<button class="btn btn-primary" >ذخیره</button>
+<a href="{% url "accounts:show" %}" class="btn btn-info" >لغو</a>
+</form>
+ </div>
+</div>
+
+{% endblock content %}

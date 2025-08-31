@@ -1,0 +1,301 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+  <title>{% block title %}{% endblock title %}</title>
+  <!-- base:css -->
+  <link rel="stylesheet" href="{% static "dashboard/vendors/mdi/css/materialdesignicons.min.css" %}">
+  <link rel="stylesheet" href="{% static "dashboard/vendors/css/vendor.bundle.base.css" %}">
+  <!-- endinject -->
+  <!-- plugin css for this page -->
+  <!-- End plugin css for this page -->
+  <!-- inject:css -->
+  <link rel="stylesheet" href="{% static "dashboard/css/style.css" %}">
+  <!-- endinject -->
+  <link rel="shortcut icon" href="{% static "dashboard/images/favicon.png" %}" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4Q6Gf2aSP4eDXB8Miphtr37CMZZQ5oXLH2yaXMJ2w8e2ZtHTl7GptT4jmndRuHDT" crossorigin="anonymous">
+  <style>
+
+    {% block style0 %}
+    
+    
+    
+    {% endblock style0 %}
+    
+    </style> 
+</head>
+
+<body style="text-align:right">
+  <div class="container-scroller d-flex">
+    <!-- partial:./partials/_sidebar.html -->
+    <nav class="sidebar sidebar-offcanvas" id="sidebar">
+      <ul class="nav">
+        <li class="nav-item sidebar-category">
+          <p>دسترسی سریع</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "accounts:userpanel" %}">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">داشبرد</span>
+            <div class="badge badge-info badge-pill">1</div>
+          </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="{% url "news:home" %}">
+            <i class="mdi mdi-view-quilt menu-icon"></i>
+            <span class="menu-title">وبسایت</span>
+            <div class="badge badge-info badge-pill">2</div>
+          </a>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>بخش ها</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
+            <i class="mdi mdi-palette menu-icon"></i>
+            <span class="menu-title">قابلیت ها</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="ui-basic">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{% url "accounts:add" %}">افزودن خبر(پست)</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{% url "accounts:show" %}">نمایش خبر ها (پست ها)</a></li>
+            </ul>
+          </div>
+        </li>
+        <li class="nav-item sidebar-category">
+          <p>مربوط به پنل</p>
+          <span></span>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-toggle="collapse" href="#auth" aria-expanded="false" aria-controls="auth">
+            <i class="mdi mdi-account menu-icon"></i>
+            <span class="menu-title">تنظیمات سایت</span>
+            <i class="menu-arrow"></i>
+          </a>
+          <div class="collapse" id="auth">
+            <ul class="nav flex-column sub-menu">
+              <li class="nav-item"> <a class="nav-link" href="{% url "accounts:profile" %}">نمایش پروفایل</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{% url "accounts:password_change" %}">تغیر رمز اکانت</a></li>
+              <li class="nav-item"> <a class="nav-link" href="{% url "accounts:logout" %}">خروج از اکانت</a></li>
+            </ul>
+          </div>
+        </li>
+      </ul>
+    </nav>
+    <!-- partial -->
+
+    <div class="container-fluid page-body-wrapper">
+      <!-- partial:./partials/_navbar.html -->
+      <nav class="navbar col-lg-12 col-12 px-0 py-0 py-lg-4 d-flex flex-row">
+        <div class="navbar-menu-wrapper d-flex align-items-center justify-content-end">
+          <button class="navbar-toggler navbar-toggler align-self-center" type="button" data-toggle="minimize">
+            <span class="mdi mdi-menu"></span>
+          </button>
+          <div class="navbar-brand-wrapper">
+            <a class="navbar-brand brand-logo" href="index.html"><img src="{% static "dashboard/images/logo.svg" %}" alt="logo"/></a>
+            <a class="navbar-brand brand-logo-mini" href="index.html"><img src="{% static "dashboard/images/logo-mini.svg" %}" alt="logo"/></a>
+          </div>
+          <h4 style="font-size:50px" class="font-weight-bold mb-0 d-none d-md-block mt-1"></h4><b  style="text-align:center;font-size:41px;margin-left:41px">به پنل کاربری خوش آمدید   {{user.username}}</b>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item">
+              <h4 class="mb-0 font-weight-bold d-none d-xl-block">{% now "SHORT_DATETIME_FORMAT" %}</h4>
+            </li>
+            <li class="nav-item dropdown mr-1">
+
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="messageDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Messages</p>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src="{% static "dashboard/images/faces/face4.jpg" %}" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal">David Grey
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      The meeting is cancelled
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src="{% static "dashboard/images/faces/face2.jpg" %}" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal">Tim Cook
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      New product launch
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                      <img src="{% static "dashboard/images/faces/face3.jpg" %}" alt="image" class="profile-pic">
+                  </div>
+                  <div class="preview-item-content flex-grow">
+                    <h6 class="preview-subject ellipsis font-weight-normal"> Johnson
+                    </h6>
+                    <p class="font-weight-light small-text text-muted mb-0">
+                      Upcoming board meeting
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item dropdown mr-2">
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown preview-list" aria-labelledby="notificationDropdown">
+                <p class="mb-0 font-weight-normal float-left dropdown-header">Notifications</p>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-success">
+                      <i class="mdi mdi-information mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Application Error</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Just now
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-warning">
+                      <i class="mdi mdi-settings mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">Settings</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      Private message
+                    </p>
+                  </div>
+                </a>
+                <a class="dropdown-item preview-item">
+                  <div class="preview-thumbnail">
+                    <div class="preview-icon bg-info">
+                      <i class="mdi mdi-account-box mx-0"></i>
+                    </div>
+                  </div>
+                  <div class="preview-item-content">
+                    <h6 class="preview-subject font-weight-normal">New user registration</h6>
+                    <p class="font-weight-light small-text mb-0 text-muted">
+                      2 days ago
+                    </p>
+                  </div>
+                </a>
+              </div>
+            </li>
+          </ul>
+          <button class="navbar-toggler navbar-toggler-right d-lg-none align-self-center" type="button" data-toggle="offcanvas">
+            <span class="mdi mdi-menu"></span>
+          </button>
+        </div>
+        <div class="navbar-menu-wrapper navbar-search-wrapper d-none d-lg-flex align-items-center">
+          <ul class="navbar-nav mr-lg-2">
+            <li class="nav-item nav-search d-none d-lg-block">
+              <div class="input-group">
+                <input type="text" class="form-control" placeholder="Search Here..." aria-label="search" aria-describedby="search">
+              </div>
+            </li>
+          </ul>
+          <ul class="navbar-nav navbar-nav-right">
+            <li class="nav-item nav-profile dropdown">
+              <a class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" id="profileDropdown">
+                {% comment %} <img src="{% static "dashboard/images/faces/face5.jpg" %}" alt="profile"/> {% endcomment %}
+                <span class="nav-profile-name">{{user.username}}</span>
+              </a>
+              <div class="dropdown-menu dropdown-menu-right navbar-dropdown" aria-labelledby="profileDropdown">
+                <a href="{% url "accounts:profile"  %}" class="dropdown-item">
+                  <i class="mdi mdi-settings text-primary"></i>
+                  <b>جزییات پروفایل</b>
+                </a>
+                <a href="{% url "accounts:logout" %}" class="dropdown-item">
+                  <i class="mdi mdi-logout text-primary"></i>
+                <b style="color:red">خروج از اکانت</b>
+                </a>
+              </div>
+            </li>
+            <li class="nav-item">
+              <a href="{% url "accounts:add" %}" class="nav-link icon-link">
+                <i class="mdi mdi-plus-circle-outline"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url "news:home" %}" class="nav-link icon-link">
+                <i class="mdi mdi-web"></i>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a href="{% url "accounts:show" %}" class="nav-link icon-link">
+                <i class="mdi mdi-clock-outline"></i>
+              </a>
+            </li>
+          </ul>
+        </div>
+      </nav>
+      <!-- partial -->
+      <div class="main-panel">
+        <div class="content-wrapper">
+          <div class="row">
+          <!-- row end -->
+        </div>
+        {% block content %}
+                          
+                          
+                          
+                          
+                          
+        {% endblock content %}
+        <!-- content-wrapper ends -->
+        <!-- partial:./partials/_footer.html -->
+         <!-- style="position:absolute;bottom:0;width:80%" -->
+          <br><br>
+        <footer class="footer">
+          <div class="card">
+            <div class="container-fluid py-4 px-sm-3 px-md-5">
+              <p class="m-0 text-center" style="color:black">
+                  &copy; <a class="font-weight-bold" href="{% url "news:home" %}">Surena News</a>. All Rights Reserved. 
+                  Made by<a class="font-weight-bold" href="https://github.com/surena7" style="color:#dddf00"> Surena Kamari</a>
+              </p>
+          </div>
+            </div>
+          </div>
+        </footer>
+        <!-- partial -->
+      </div>
+      <!-- main-panel ends -->
+    </div>
+    <!-- page-body-wrapper ends -->
+  </div>
+  <!-- container-scroller -->
+
+  <!-- base:js -->
+  <script src="{% static "dashboard/vendors/js/vendor.bundle.base.js" %}"></script>
+  <!-- endinject -->
+  <!-- Plugin js for this page-->
+  <script src="{% static "dashboard/vendors/chart.js/Chart.min.js" %}"></script>
+  <!-- End plugin js for this page-->
+  <!-- inject:js -->
+  <script src="{% static "dashboard/js/off-canvas.js" %}"></script>
+  <script src="{% static "dashboard/js/hoverable-collapse.js" %}"></script>
+  <script src="{% static "dashboard/js/template.js" %}"></script>
+  <!-- endinject -->
+  <!-- plugin js for this page -->
+  <!-- End plugin js for this page -->
+  <!-- Custom js for this page-->
+  <script src="{% static "dashboard/js/dashboard.js" %}"></script>
+  <!-- End custom js for this page-->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.6/dist/js/bootstrap.bundle.min.js" integrity="sha384-j1CDi7MgGQ12Z7Qab0qlWQ/Qqz24Gc6BM0thvEMVjHnfYGF0rmFCozFSxQBxwHKO" crossorigin="anonymous"></script>
+</body>
+
+</html>

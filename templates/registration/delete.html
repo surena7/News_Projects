@@ -1,0 +1,43 @@
+
+{% extends "registration/base2.html" %}
+
+{% block title %}Delete Post{% endblock title %}
+
+{% block style0 %}
+
+.form-group label{
+    font-size:21px,
+    color:blue
+}
+.form-control{
+
+}
+
+
+
+{% endblock %}
+
+
+{% block content %}
+
+
+
+    
+
+<div class="card" style="border:solid red 3px;border-radius:21px">
+    <div class="card-body" style="padding-top:61px;padding-bottom:61px;text-align:center">
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<h1 style="color:red">آیا مطمعن هستید؟</h1>
+<br><br>
+<h3 style="color:red"> مطمعن هستید ؟ "{{object.title}}" آیا از حذف  خبر</h3>
+{{form}}
+<button class="btn btn-danger" >حذف</button>
+<a href="{% url "accounts:show" %}" class="btn btn-info" >لغو</a>
+</form>
+ </div>
+</div>
+
+{% endblock content %}
+

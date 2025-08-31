@@ -1,0 +1,44 @@
+
+{% extends "registration/base2.html" %}
+{% load crispy_forms_tags %}
+{% block title %}ProFile {{user.username}}{% endblock title %}
+
+
+
+
+
+
+{% block content %}
+
+
+
+
+<div class="card text-center">
+    <div style="font-size:23px" class="card-header">
+      پرو فایل کاربری
+    </div>
+    <div class="card-body">
+<form method="POST" enctype="multipart/form-data">
+  {% if messages %}
+  <div style="font-size:23px;color:green;background-color:#6bbf59;padding:21px;border-radius:21px">
+
+   {% for message in messages %}
+   {{message}}
+   {% endfor %}
+  
+  </div>
+  {% endif %}
+  <br>
+        {% csrf_token %}
+{{form|crispy}}
+      <button type="submit" class="btn btn-outline-danger">تغییر</button>
+      <a href="{% url "accounts:userpanel" %}" class="btn btn-outline-info">بازگشت</a>
+</form>
+    </div>
+
+  </div>
+
+
+
+{% endblock content %}
+
